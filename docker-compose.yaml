@@ -1,0 +1,23 @@
+version: '3.1'
+services:
+  db:
+    image: 75993dd36176
+    #    container_name: gifted_brown
+    restart: on-failure
+    volumes:
+      - db_data:/var/lib/postgresql
+    environment:
+      POSTGRES_PASSWORD: pass123
+      POSTGRES_DB: postgres
+      POSTGRES_USER: user1
+    ports:
+      - 5435:5432
+  adminer:
+    hostname: adminer
+    image: adminer
+    restart: on-failure
+    ports:
+      - 8581:8080
+volumes:
+  db_data:
+
