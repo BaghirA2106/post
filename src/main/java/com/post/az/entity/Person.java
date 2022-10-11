@@ -17,7 +17,7 @@ public class Person {
 
     public static final String TABLE_NAME = "person";
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private Long id;
 
