@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2022-01
+      author: baghir
+      changes:
+        - createTable:
+            tableName: person
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: person_pk
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  name: surname
+                  type: VARCHAR(255)
+              - column:
+                  name: age
+                  type: VARCHAR(255)

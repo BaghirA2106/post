@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5435/postgres
+    username: user1
+    password: pass123
+  jpa:
+    database: POSTGRESQL
+    open-in-view: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
