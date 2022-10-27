@@ -42,6 +42,7 @@ public class PersonServiceImpl implements PersonService {
     public PersonDTO updatePerson(Long id, PersonDTO personDTO) {
         return personRepository.findById(id)
                 .map(person -> {
+
                     person.setName(personDTO.getName() == null ? person.getName() : personDTO.getName());
                     person.setSurname(personDTO.getSurname() == null ? person.getSurname() : personDTO.getSurname());
                     person.setAge(personDTO.getAge() == null ? person.getAge() : personDTO.getAge());
