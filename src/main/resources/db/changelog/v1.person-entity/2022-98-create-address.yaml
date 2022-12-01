@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2022-747
+      author: baghir
+      changes:
+        - createTable:
+            tableName: address
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: person_pk
+                    nullable: false
+              - column:
+                  name: address
+                  type: VARCHAR(255)
+              - column:
+                  name: addressNo
+                  type: VARCHAR(255)
+              - column:
+                  name: postCode
+                  type: VARCHAR(255)
+              - column:
+                  name: person
+                  type: BIGINT
+

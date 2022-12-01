@@ -1,0 +1,18 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2022-0221
+      author: baghir
+      changes:
+        - addColumn:
+            tableName: person
+            columns:
+              - column:
+                  name: address_id
+                  type: BIGINT
+        - addForeignKeyConstraint:
+            baseColumnNames: address_id
+            baseTableName: person
+            referencedColumnNames: id
+            referencedTableName: address
+            constraintName: person_pk
+            validate: true
