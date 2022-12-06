@@ -31,5 +31,8 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
         // Native query, Update Statement
     void updatePersonName(@Param("newName") String newName, @Param("id") Long id);
 
+    @Query(value = "SELECT p FROM Person p join fetch p.address")
+    List<Person> getALlDAta();
+
 
 }

@@ -1,6 +1,8 @@
 package com.post.az.entity;
 
 import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 
@@ -29,7 +31,7 @@ public class Person {
     @Column(name = "age")
     private String age;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 

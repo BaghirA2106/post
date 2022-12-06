@@ -1,14 +1,12 @@
 package com.post.az.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -29,7 +27,7 @@ public class Address {
     @Column(name = "post_code")
     private String postCode;
 
-    @OneToOne(mappedBy = "address")
+    @OneToOne(mappedBy = "address", cascade = CascadeType.ALL)
     private Person person;
 
 

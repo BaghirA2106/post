@@ -1,0 +1,27 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2022-784
+      author: baghir
+      changes:
+        - createTable:
+            tableName: car
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+              - column:
+                  name: model
+                  type: VARCHAR(255)
+              - column:
+                  name: brand_name
+                  type: VARCHAR(255)
+              - column:
+                  name: vehicle_name
+                  type: VARCHAR(255)
+              - column:
+                  name: car_id_no
+                  type: VARCHAR(255)
+              - column:
+                  name: fk_person_id
+                  type: BIGINT
