@@ -2,6 +2,7 @@ package com.post.az.repository;
 
 import com.post.az.dto.PersonDTO;
 import com.post.az.entity.Person;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -31,7 +32,8 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
         // Native query, Update Statement
     void updatePersonName(@Param("newName") String newName, @Param("id") Long id);
 
-    @Query(value = "SELECT p FROM Person p join fetch p.address")
+    @Query(value = "SELECT p FROM Person p")
+    @EntityGraph(value = "entity-graph-address", type = EntityGraph.EntityGraphType.LOAD)
     List<Person> getALlDAta();
 
 

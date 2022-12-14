@@ -8,6 +8,11 @@ import javax.persistence.*;
 
 import static com.post.az.entity.Person.TABLE_NAME;
 
+@NamedEntityGraph(name = "entity-graph-address",
+        attributeNodes = {
+                @NamedAttributeNode("address")
+        }
+)
 @Getter
 @Setter
 @NoArgsConstructor
@@ -35,4 +40,7 @@ public class Person {
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_pin", referencedColumnName = "pin")
+    private IdCard idCard;
 }
