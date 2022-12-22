@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 import static com.post.az.entity.Person.TABLE_NAME;
 
-@NamedEntityGraph(name = "entity-graph-address",
+@NamedEntityGraph(name = "Person.address",
         attributeNodes = {
                 @NamedAttributeNode("address")
         }
@@ -20,13 +20,9 @@ import static com.post.az.entity.Person.TABLE_NAME;
 @Builder
 @Entity
 @Table(name = TABLE_NAME)
-public class Person {
+public class Person extends CoreEntity {
 
     public static final String TABLE_NAME = "person";
-
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Id
-    private Long id;
 
     @Column(name = "name")
     private String name;

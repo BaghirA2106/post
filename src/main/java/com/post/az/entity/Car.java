@@ -14,11 +14,8 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity
 @Table(name = Car.TABLE_NAME)
-public class Car {
+public class Car extends CoreEntity {
     public static final String TABLE_NAME = "Car";
-
-    @Id
-    private Long id;
 
     @Column(name = "brand_name")
     private String brandName;

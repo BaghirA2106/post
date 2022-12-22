@@ -11,12 +11,8 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity
 @Table(name = Address.TABEL_NAME)
-public class Address {
+public class Address extends CoreEntity {
     public static final String TABEL_NAME = "address";
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
 
     @Column(name = "address")
     private String address;

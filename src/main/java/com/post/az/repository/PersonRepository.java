@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface PersonRepository extends JpaRepository<Person, Long> {
@@ -33,7 +34,7 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     void updatePersonName(@Param("newName") String newName, @Param("id") Long id);
 
     @Query(value = "SELECT p FROM Person p")
-    @EntityGraph(value = "entity-graph-address", type = EntityGraph.EntityGraphType.LOAD)
+    @EntityGraph(value = "Person.address", type = EntityGraph.EntityGraphType.FETCH)
     List<Person> getALlDAta();
 
 

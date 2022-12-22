@@ -4,6 +4,7 @@ import lombok.*;
 import org.springframework.context.annotation.Primary;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Getter
@@ -12,12 +13,9 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = IdCard.TABLE_NAME)
-public class IdCard {
+public class IdCard extends CoreEntity implements Serializable {
 
     public static final String TABLE_NAME = "id_card";
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
 
     @Column(name = "serial_number")
     private String serialNumber;

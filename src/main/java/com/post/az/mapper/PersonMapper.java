@@ -10,8 +10,8 @@ import static org.mapstruct.ReportingPolicy.IGNORE;
 @Mapper(componentModel =  "spring")
 public interface PersonMapper {
 
-
     Person dtoToEntity(PersonDTO dto);
+
     PersonDTO entityToDto(Person person);
 
 
