@@ -14,6 +14,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @SpringBootApplication
@@ -27,12 +28,46 @@ public class PostApplication implements CommandLineRunner {
 
     private final PersonRepository personRepository;
 
+    @Transactional
+    public void name(IdCard sourceIdCard, IdCard targetIdCard, String amountA) throws InterruptedException {
+
+
+        int amount = Integer.valueOf(amountA);
+
+        Person source = personRepository.findByIdCard(sourceIdCard);
+        Person target = personRepository.findByIdCard(targetIdCard);
+
+        if (amount > source.getBalance()) {
+            throw new RuntimeException("insufficient balance");
+        }
+
+        source.setBalance(source.getBalance() - amount);
+        target.setBalance(target.getBalance() + amount);
+
+        personRepository.updateBalance(source.getBalance(), source.getIdCard());
+        Thread.sleep(10000);
+        if(true){
+            throw new RuntimeException();
+        }
+        personRepository.updateBalance(target.getBalance(), target.getIdCard());
+
+        System.out.println(source.getBalance());
+        System.out.println(target.getBalance());
+
+
+    }
+
+
     @Override
     public void run(String... args) throws Exception {
-//        List<Person> getSpecificPerson = personRepository.getPersonByAgeGreaterThanTwenty("1");
-//        personRepository.getData("Baghir").stream().map(person -> person).forEach(System.out::println);
-//        personRepository.getALlDAta().stream().forEach(System.out::println);
-        personRepository.getALlDAta().stream().forEach(System.out::println);
+
+        IdCard source = new IdCard();
+        source.setPin("abcde");
+
+        IdCard target = new IdCard();
+        target.setPin("12345");
+
+        name(source, target, "10");
 
     }
 }

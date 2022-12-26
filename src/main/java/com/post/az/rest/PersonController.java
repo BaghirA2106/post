@@ -2,8 +2,11 @@ package com.post.az.rest;
 
 
 import com.post.az.dto.PersonDTO;
+import com.post.az.entity.IdCard;
 import com.post.az.entity.Person;
+import com.post.az.entity.TransactionData;
 import com.post.az.service.PersonService;
+import com.post.az.service.TransactionDataService;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.common.reflection.XMethod;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +23,7 @@ import java.util.List;
 public class PersonController {
 
     private final PersonService personService;
+    private final TransactionDataService transactionDataService;
 
     @PostMapping("create/")
     public ResponseEntity<PersonDTO> createPerson (@RequestBody PersonDTO person){
@@ -39,5 +43,10 @@ public class PersonController {
     @DeleteMapping("delete/{id}/")
     public void deletePerson (@PathVariable Long id){
         personService.delete(id);
+    }
+
+    @PutMapping("update/")
+    public TransactionData sendMoney(@RequestBody IdCard sourceIdCard, @RequestParam IdCard targetIdCard, @RequestParam String amount){
+        return transactionDataService.send(sourceIdCard,targetIdCard, amount);
     }
 }

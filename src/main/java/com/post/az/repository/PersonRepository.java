@@ -1,19 +1,16 @@
 package com.post.az.repository;
 
-import com.post.az.dto.PersonDTO;
+import com.post.az.entity.IdCard;
 import com.post.az.entity.Person;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface PersonRepository extends JpaRepository<Person, Long> {
@@ -25,7 +22,7 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 
     @Query(value = "SELECT * FROM person p where p.name = :name ", nativeQuery = true)
         // Native Query
-    List<Person> getData(@Param("name") String name);
+    List<Person> getDataByName(@Param("name") String name);
 
     @Query(value = "UPDATE person SET name = :newName where id = :id", nativeQuery = true)
     @Modifying(clearAutomatically = true)
@@ -38,4 +35,11 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     List<Person> getALlDAta();
 
 
+    @Query(value = "SELECT p FROM Person p where p.idCard = :idCard")
+    Person findByIdCard(@Param("idCard") IdCard idCard);
+
+    @Query(value = "UPDATE Person SET balance = :balance where idCard = :idCard ")
+    @Modifying
+    @Transactional
+    void updateBalance(@Param("balance") long balance, @Param("idCard") IdCard idCard);
 }

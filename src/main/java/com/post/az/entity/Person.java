@@ -39,4 +39,8 @@ public class Person extends CoreEntity {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_pin", referencedColumnName = "pin")
     private IdCard idCard;
+
+
+    @Column(name = "balance")
+    private Long balance;
 }
