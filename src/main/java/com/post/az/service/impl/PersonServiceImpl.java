@@ -58,7 +58,7 @@ public class PersonServiceImpl implements PersonService {
 
     @CacheEvict(value = "person")
     @Override
-    public void delete(Long id) {
+    public void delete(Long id) {//
         Person deleteUser = personRepository.findById(id).get();
         personRepository.delete(deleteUser);
     }
