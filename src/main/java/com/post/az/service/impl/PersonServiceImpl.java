@@ -39,7 +39,7 @@ public class PersonServiceImpl implements PersonService {
                 .map(user -> modelMapper.map(user, PersonDTO.class))
                 .collect(Collectors.toList());
         return dto;
-    }
+    }//
 
     @CachePut(value = "persons", key = "#id")
     @Override
