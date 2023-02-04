@@ -35,7 +35,7 @@ public class PersonController {
         return ResponseEntity.ok(personService.getAllPerson());
     }
 
-    @PatchMapping("update/{id}/")
+    @PutMapping("update/{id}/")
     public ResponseEntity<PersonDTO> updatePerson(@PathVariable Long id, @RequestBody PersonDTO personDTO){
         return ResponseEntity.ok(personService.updatePerson(id,personDTO));
     }

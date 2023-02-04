@@ -13,14 +13,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Scanner scan = new Scanner(System.in);
-boolean check = true;
-       while(check){
-           String str = scan.nextLine();
-           System.out.println(str);
-       }
 
-
+        String str = "123";
+        double str2 = Double.parseDouble(str);
+        System.out.println(str2);
 
     }
 }
