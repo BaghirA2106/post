@@ -63,5 +63,12 @@ public class PersonServiceImpl implements PersonService {
         personRepository.delete(deleteUser);
     }
 
+    @Override
+    public PersonDTO getPersonById(Long id) {
+
+        Person person = personRepository.findById(id).get();
+        return modelMapper.map(person, PersonDTO.class);
+    }
+
 
 }

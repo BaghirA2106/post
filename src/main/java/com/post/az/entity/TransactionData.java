@@ -23,5 +23,8 @@ public class TransactionData extends CoreEntity {
     @Column(name = "target_Account")
     private String targetAcc;
 
+    @Version
+    private Long version = 0L;
+
 }
 
