@@ -41,7 +41,7 @@ public class TransactionDataServiceImpl implements TransactionDataService {
             throw new RuntimeException("insufficient balance");
         }
 
-        Thread.sleep(15000);
+//        Thread.sleep(15000);
         source.setBalance(source.getBalance() - amount);
         target.setBalance(target.getBalance() + amount);
 

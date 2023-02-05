@@ -33,11 +33,14 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     List<Person> getALlDAta();
 
     @Query(value = "SELECT p FROM Person p where p.idCard = :idCard")
-    @Lock(LockModeType.PESSIMISTIC_WRITE)
     Person findByIdCard(@Param("idCard") IdCard idCard);
 
     @Query(value = "UPDATE Person SET balance = :balance where idCard = :idCard ")
     @Modifying
     @Transactional
     void updateBalance(@Param("balance") long balance, @Param("idCard") IdCard idCard);
+
+    @Query(value = "SELECT p FROM Person p WHERE p.id = :id ")
+    @Lock(LockModeType.PESSIMISTIC_READ)
+    Person getByPersonId(Long id);
 }

@@ -6,6 +6,7 @@ import com.post.az.entity.Person;
 import com.post.az.repository.PersonRepository;
 import com.post.az.service.PersonService;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.cache.annotation.CacheEvict;
@@ -13,6 +14,7 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -63,10 +65,13 @@ public class PersonServiceImpl implements PersonService {
         personRepository.delete(deleteUser);
     }
 
+    @Transactional
+    @SneakyThrows
     @Override
     public PersonDTO getPersonById(Long id) {
 
-        Person person = personRepository.findById(id).get();
+        Person person = personRepository.getByPersonId(id);
+        Thread.sleep(15000);
         return modelMapper.map(person, PersonDTO.class);
     }
 
