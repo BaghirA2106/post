@@ -6,6 +6,7 @@ import com.post.az.entity.Person;
 import com.post.az.repository.PersonRepository;
 import com.post.az.service.PersonService;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.cache.annotation.CacheEvict;
@@ -13,6 +14,7 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,7 +42,7 @@ public class PersonServiceImpl implements PersonService {
                 .collect(Collectors.toList());
         return dto;
     }
-
+//
     @CachePut(value = "persons", key = "#id")
     @Override
     public PersonDTO updatePerson(Long id, PersonDTO personDTO) {
@@ -61,6 +63,16 @@ public class PersonServiceImpl implements PersonService {
     public void delete(Long id) {//
         Person deleteUser = personRepository.findById(id).get();
         personRepository.delete(deleteUser);
+    }
+
+    @Transactional
+    @SneakyThrows
+    @Override
+    public PersonDTO getPersonById(Long id) {
+
+        Person person = personRepository.getByPersonId(id);
+        Thread.sleep(15000);
+        return modelMapper.map(person, PersonDTO.class);
     }
 
 

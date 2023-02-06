@@ -2,13 +2,11 @@ package com.post.az.repository;
 
 import com.post.az.entity.IdCard;
 import com.post.az.entity.Person;
-import org.springframework.data.jpa.repository.EntityGraph;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.LockModeType;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -34,7 +32,6 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     @EntityGraph(value = "Person.address", type = EntityGraph.EntityGraphType.FETCH)
     List<Person> getALlDAta();
 
-
     @Query(value = "SELECT p FROM Person p where p.idCard = :idCard")
     Person findByIdCard(@Param("idCard") IdCard idCard);
 
@@ -42,4 +39,8 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     @Modifying
     @Transactional
     void updateBalance(@Param("balance") long balance, @Param("idCard") IdCard idCard);
+
+    @Query(value = "SELECT p FROM Person p WHERE p.id = :id ")
+    @Lock(LockModeType.PESSIMISTIC_READ)
+    Person getByPersonId(Long id);
 }
