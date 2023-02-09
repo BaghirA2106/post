@@ -43,4 +43,7 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     @Query(value = "SELECT p FROM Person p WHERE p.id = :id ")
     @Lock(LockModeType.PESSIMISTIC_READ)
     Person getByPersonId(Long id);
+
+
+    Person getDataById(Long id);
 }
