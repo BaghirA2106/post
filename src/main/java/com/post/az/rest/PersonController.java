@@ -7,6 +7,8 @@ import com.post.az.entity.Person;
 import com.post.az.entity.TransactionData;
 import com.post.az.service.PersonService;
 import com.post.az.service.TransactionDataService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.annotations.common.reflection.XMethod;
@@ -23,6 +25,7 @@ import java.util.List;
 @RequestMapping("api/v1/")
 @RequiredArgsConstructor
 @Slf4j
+@Api(value = "Example Swagger")
 public class PersonController {
 
     private final PersonService personService;
@@ -34,6 +37,7 @@ public class PersonController {
     }
 
     @GetMapping("persons/")
+    @ApiOperation("Get Example Data")
     public ResponseEntity<List<PersonDTO>> getAllPerson() {
         return ResponseEntity.ok(personService.getAllPerson());
     }
