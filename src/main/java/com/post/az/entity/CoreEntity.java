@@ -2,6 +2,8 @@ package com.post.az.entity;
 
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @MappedSuperclass
 public class CoreEntity {
@@ -26,4 +28,9 @@ public class CoreEntity {
 
     public static final Byte ACTIVE = new Byte((byte) 1);
     public static final Byte PASSIVE = new Byte((byte) 0);
+//
+//    @PrePersist
+//    public void  prePersist(){
+//        createdDate = LocalDateTime.now();
+//    }
 }

@@ -1,22 +1,20 @@
 package com.post.az.main;
 
-import com.post.az.entity.Person;
-
-import java.math.RoundingMode;
-import java.sql.SQLOutput;
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.time.LocalDate;
 
 public class Main {
 
     public static void main(String[] args) {
 
 
-        String str = "123";
-        double str2 = Double.parseDouble(str);
-        System.out.println(str2);
+        String str = LocalDate.now().minusDays(10).toString();
+        String date = "";
+
+        date = date + str.substring(0,4);
+        date = date + str.substring(5, 7);
+        date = date + str.substring(8, 10);
+        System.out.println(str
+        );
 
     }
 }
